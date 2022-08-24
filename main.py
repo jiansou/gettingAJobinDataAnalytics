@@ -28,9 +28,8 @@ while site < 20:
         locations = numpy.append(locations, location_element.text.strip())
     site += 1
 
-# Hier muss ich nochmal ran: [185 rows x 1 columns] = output right now
-# somehow the data is only saved in one column, but there are two values in it
 for A, B in zip(companies, locations):
     d[A] = B
-df = pd.DataFrame.from_dict(d, orient='index')
+df = pd.DataFrame(d.items(), columns=['Company', 'Location'])
+df = df.iloc[1:, :]
 df.to_csv('TWCompanies.csv')
